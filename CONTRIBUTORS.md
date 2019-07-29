@@ -1,8 +1,16 @@
-Original pretty version
+Java - original pretty version
 =======================
 * Sergei Volchek
 * Aliaksei Safronau
 
-Final corrupted version with voilations
+Java - final corrupted version with voilations
 =======================================
 * Vitali Shulha
+
+JS version
+==========
+* @SnezhanaMatskevich
+
+C# version
+==========
+* @DenisChulkov
