@@ -1,0 +1,22 @@
+{
+  "name": "clean-code-js",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "author": {
+    "name": "Sniazhana Matskevich"
+  },
+  "license": "",
+  "engines": {
+    "node": ">=6.9.1",
+    "npm": ">=3.10.8"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "chai": "^4.2.0"
+  }
+}
