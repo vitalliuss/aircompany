@@ -1,5 +1,5 @@
 package models;
 
-public enum MilitaryType {
+public enum MilitaryPlaneTypes {
     FIGHTER, BOMBER, TRANSPORT
 }

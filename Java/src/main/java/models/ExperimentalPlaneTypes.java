@@ -1,5 +1,5 @@
 package models;
 
-public enum ExperimentalTypes {
+public enum ExperimentalPlaneTypes {
     LIFTING_BODY, HYPERSONIC, HIGH_ALTITUDE, VTOL
 }
