@@ -1,10 +1,11 @@
-import models.MilitaryType;
-import Planes.MilitaryPlane;
-import Planes.PassengerPlane;
-import Planes.Plane;
-
 import java.util.Arrays;
 import java.util.List;
+
+import airports.Airport;
+import models.MilitaryType;
+import planes.MilitaryPlane;
+import planes.PassengerPlane;
+import planes.Plane;
 
 public class Runner {
     static List<Plane> planes = Arrays.asList(
