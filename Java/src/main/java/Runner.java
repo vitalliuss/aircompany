@@ -1,10 +1,12 @@
-import models.MilitaryType;
-import Planes.MilitaryPlane;
-import Planes.PassengerPlane;
-import Planes.Plane;
-
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+
+import airports.Airport;
+import models.MilitaryType;
+import planes.MilitaryPlane;
+import planes.PassengerPlane;
+import planes.Plane;
 
 public class Runner {
     static List<Plane> planes = Arrays.asList(
@@ -26,14 +28,12 @@ public class Runner {
 
     public static void main(String[] args) {
         Airport airport = new Airport(planes);
-        Airport militaryAirport = new Airport(airport.getMilitaryPlanes());
-        Airport passengerAirport = new Airport(airport.getPasPl());
-        System.out.println("Military airport sorted by max distance: " + militaryAirport
-                .sortByMaxDistance()
-                .toString());
-        System.out.println("Passenger airport sorted by max speed: " + passengerAirport
-                .sortByMaxSpeed()
-                .toString());
+        Airport militaryAirport = new Airport(airport.getPlanesByClass(MilitaryPlane.class));
+        Airport passengerAirport = new Airport(airport.getPassengerPlanes());
+        System.out.println("Military airport sorted by max distance: "
+                + militaryAirport.sort(Comparator.comparingInt(Plane::getMaxFlightDistance)));
+        System.out.println("Passenger airport sorted by max speed: "
+                + passengerAirport.sort(Comparator.comparingInt(Plane::getMaxSpeed)));
 
         System.out.println("Plane with max passenger capacity: " + passengerAirport.getPassengerPlaneWithMaxPassengersCapacity());
     }
