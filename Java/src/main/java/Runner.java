@@ -35,6 +35,6 @@ public class Runner {
         Logger.getLogger("Passenger airport sorted by max speed: " + passengerAirport
                 .sortByMaxSpeed()
                 .toString());
-       Logger.getLogger("Plane with max passenger capacity: " + passengerAirport.getPassengerPlaneWithMaxPassengersCapacity());
-       }
+        Logger.getLogger("Plane with max passenger capacity: " + passengerAirport.getPassengerPlaneWithMaxPassengersCapacity());
+    }
 }
