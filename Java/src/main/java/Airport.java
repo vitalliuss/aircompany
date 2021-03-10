@@ -4,7 +4,9 @@ import Planes.MilitaryPlane;
 import Planes.PassengerPlane;
 import Planes.Plane;
 
+
 import java.util.*;
+import java.util.logging.Logger;
 
 // version: 1.1
 // made by Vitali Shulha
@@ -27,11 +29,10 @@ public class Airport {
         for (Plane plane : planes) {
             if (plane instanceof MilitaryPlane) {
                 militaryPlanes.add((MilitaryPlane) plane);
-            } //if
-            else {
-
-            } // else
-        } //for
+            } else {
+                Logger.getLogger("Not found");
+            }
+        }
         return militaryPlanes;
     }
 
@@ -87,6 +88,7 @@ public class Airport {
         return experimentalPlanes;
     }
 
+
     public Airport sortByMaxDistance() {
         Collections.sort(planes, new Comparator<Plane>() {
             public int compare(Plane o1, Plane o2) {
@@ -127,8 +129,8 @@ public class Airport {
         Iterator<? extends Plane> iterator = collection.iterator();
         while (iterator.hasNext()) {
             Plane plane = iterator.next();
-            System.out.println(plane);
-        }
+            Logger.getLogger(String.valueOf(plane));
+           }
     }
 
     @Override
