@@ -1,11 +1,10 @@
-const Plane = require('./Plane');
+const PlaneSettings = require('./PlaneSettings');
 
-class MilitaryPlane extends Plane {
+class MilitaryPlane extends PlaneSettings {
 
     constructor(model, maxSpeed, maxFlightDistance, maxLoadCapacity, militaryType) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
         this.militaryType = militaryType;
-
     }
 
     getMilitaryType() {
