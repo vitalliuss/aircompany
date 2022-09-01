@@ -1,68 +1,15 @@
-const Plane = require('./Plane');
+import PlaneSettings from './PlaneSettings';
 
-class experimentalPlane   extends Plane
-{
+class PassengerPlane extends PlaneSettings {
 
-    constructor(model, maxSpeed, maxFlightDistance, maxLoadCapacity, type, classificationLevel)  {
+    constructor(model, maxSpeed, maxFlightDistance, maxLoadCapacity, passengersCapacity) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this._model = model;
-        this._maxSpeed = maxSpeed;
-        this._maxFlightDistance = maxFlightDistance;
-        this._maxLoadCapacity = maxLoadCapacity;
-        this._type = type;
-        this._classificationLevel = classificationLevel;
+        this.passengersCapacity = passengersCapacity;
+    };
 
-    }
+    getPassengersCapacity() {
+        return this.passengersCapacity;
+    };
+};
 
-
-    get model()
-    {
-        return this._model;
-    }
-
-    set model(value) {
-        this._model = value;
-    }
-
-    get maxSpeed() {
-        return this._maxSpeed;
-    }
-
-    set maxSpeed(value) {
-        this._maxSpeed = value;
-    }
-
-    get maxFlightDistance() {
-        return this._maxFlightDistance;
-    }
-
-    set maxFlightDistance(value) {
-        this._maxFlightDistance = value;
-    }
-
-    get maxLoadCapacity() {
-        return this._maxLoadCapacity;
-    }
-
-    set maxLoadCapacity(value) {
-        this._maxLoadCapacity = value;
-    }
-
-    get type() {
-        return this._type;
-    }
-
-    set type(value) {
-        this._type = value;
-    }
-
-    get classificationLevel() {
-        return this._classificationLevel;
-    }
-
-    set classificationLevel(value) {
-        this._classificationLevel = value;
-    }
-}
-
-module.exports = experimentalPlane
+export default PassengerPlane;
