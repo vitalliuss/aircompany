@@ -1,17 +1,21 @@
-const assert = require('chai').assert;
+const chai = require('chai');
+chai.use(require("chai-sorted"));
 
-const Plane = require('../Planes/Plane');
-const MilitaryPlane = require('../Planes/MilitaryPlane');
-const PassengerPlane = require('../Planes/PassengerPlane');
-const Airport = require('../Airport');
-const MilitaryType = require('../models/MilitaryType');
-const experimentalPlane = require('../Planes/experimentalPlane');
-const ExperimentalTypes = require('../models/ExperimentalTypes');
-const ClassificationLevel = require('../models/ClassificationLevel');
+const { assert } = chai;
 
-describe('My Test', () => {
+const Airport = require('../airport');
 
-    let planes = [
+const MilitaryPlane = require('../Planes/military-plane');
+const PassengerPlane = require('../Planes/passenger-plane');
+const ExperimentalPlane = require('../Planes/experimental-plane');
+
+const MILITARY_TYPES = require('../models/military-types');
+const EXPERIMENTAL_TYPES = require('../models/experimental-types');
+const CLASSIFICATION_LEVELS = require('../models/classification-levels');
+
+describe('Test cases of Airport', () => {
+
+    const passengerPlanes = [
         new PassengerPlane('Boeing-737', 900, 12000, 60500, 164),
         new PassengerPlane('Boeing-737-800', 940, 12300, 63870, 192),
         new PassengerPlane('Boeing-747', 980, 16100, 70500, 242),
@@ -19,40 +23,63 @@ describe('My Test', () => {
         new PassengerPlane('Airbus A330', 990, 14800, 80500, 222),
         new PassengerPlane('Embraer 190', 870, 8100, 30800, 64),
         new PassengerPlane('Sukhoi Superjet 100', 870, 11500, 50500, 140),
-        new PassengerPlane('Bombardier CS300', 920, 11000, 60700, 196),
-        new MilitaryPlane('B-1B Lancer', 1050, 21000, 80000, MilitaryType.BOMBER),
-        new MilitaryPlane('B-2 Spirit', 1030, 22000, 70000, MilitaryType.BOMBER),
-        new MilitaryPlane('B-52 Stratofortress', 1000, 20000, 80000, MilitaryType.BOMBER),
-        new MilitaryPlane('F-15', 1500, 12000, 10000, MilitaryType.FIGHTER),
-        new MilitaryPlane('F-22', 1550, 13000, 11000, MilitaryType.FIGHTER),
-        new MilitaryPlane('C-130 Hercules', 650, 5000, 110000, MilitaryType.TRANSPORT),
-        new experimentalPlane("Bell X-14", 277, 482, 500, ExperimentalTypes.HIGH_ALTITUDE, ClassificationLevel.SECRET),
-        new experimentalPlane("Ryan X-13 Vertijet", 560, 307, 500, ExperimentalTypes.VTOL, ClassificationLevel.TOP_SECRET)
+        new PassengerPlane('Bombardier CS300', 920, 11000, 60700, 196)
     ];
-    let planeWithMaxPassengerCapacity = new PassengerPlane('Boeing-747', 980, 16100, 70500, 242);
+
+    const militaryBomberPlanes = [
+        new MilitaryPlane('B-1B Lancer', 1050, 21000, 80000, MILITARY_TYPES.BOMBER),
+        new MilitaryPlane('B-2 Spirit', 1030, 22000, 70000, MILITARY_TYPES.BOMBER),
+        new MilitaryPlane('B-52 Stratofortress', 1000, 20000, 80000, MILITARY_TYPES.BOMBER)
+    ];
+
+    const militaryFighterPlanes = [
+        new MilitaryPlane('F-15', 1500, 12000, 10000, MILITARY_TYPES.FIGHTER),
+        new MilitaryPlane('F-22', 1550, 13000, 11000, MILITARY_TYPES.FIGHTER)
+    ];
+
+    const militaryTransportPlanes = [
+        new MilitaryPlane('C-130 Hercules', 650, 5000, 110000, MILITARY_TYPES.TRANSPORT)
+    ];
+
+    const militaryPlanes = [
+        ...militaryBomberPlanes,
+        ...militaryFighterPlanes,
+        ...militaryTransportPlanes
+    ];
+
+    const classifiedExperimentalPlanes = [
+        new ExperimentalPlane("Bell X-14", 277, 482, 500, EXPERIMENTAL_TYPES.HIGH_ALTITUDE, CLASSIFICATION_LEVELS.SECRET),
+        new ExperimentalPlane("Ryan X-13 Vertijet", 560, 307, 500, EXPERIMENTAL_TYPES.VTOL, CLASSIFICATION_LEVELS.TOP_SECRET)
+    ];
+
+    const planes = [
+        ...passengerPlanes,
+        ...militaryPlanes,
+        ...classifiedExperimentalPlanes
+    ];
+
+    const planeWithMaxPassengerCapacity = new PassengerPlane('Boeing-747', 980, 16100, 70500, 242);
 
     it('should have military Planes with transport type', () => {
         let airport = new Airport(planes);
         let transportMilitaryPlanes = airport.getTransportMilitaryPlanes();
         let flag = false;
         for (let militaryPlane of transportMilitaryPlanes) {
-            if (militaryPlane.getMilitaryType() === MilitaryType.TYPE_TRANSPORT) {
+            if (militaryPlane.militaryType === MILITARY_TYPES.TRANSPORT) {
                 flag = true;
                 break;
             }
         }
-        assert.equal(flag,true);
+        assert.equal(flag, true);
     });
 
     it('should check passenger plane with max capacity', () => {
         let airport = new Airport(planes);
-        let expectedPlaneWithMaxPassengersCapacity = airport.getPassengerPlaneWithMaxPassengersCapacity();
-        assert.isFalse( expectedPlaneWithMaxPassengersCapacity == planeWithMaxPassengerCapacity);
+        let expectedPlaneWithMaxPassengersCapacity = airport.getPassengerPlaneWithMaxCapacity();
+        assert.isFalse(expectedPlaneWithMaxPassengersCapacity == planeWithMaxPassengerCapacity);
     });
 
-
-    it('test 3', () => {
-        console.log("TEST testGetPassengerPlaneWithMaxCapacity started!");
+    it('should be sorted by max load capacity ', () => {
         let airport = new Airport(planes);
         airport.sortByMaxLoadCapacity();
         let planesSortedByMaxLoadCapacity = airport.getPlanes();
@@ -60,7 +87,7 @@ describe('My Test', () => {
         for (let i = 0; i < planesSortedByMaxLoadCapacity.length - 1; i++) {
             let currentPlane = planesSortedByMaxLoadCapacity[i];
             let nextPlane = planesSortedByMaxLoadCapacity[i + 1];
-            if (currentPlane.getMinLoadCapacity() > nextPlane.getMinLoadCapacity()) {
+            if (currentPlane.maxLoadCapacity > nextPlane.maxLoadCapacity) {
                 nextPlaneMaxLoadCapacityIsHigherThanCurrent = false;
                 break;
             }
@@ -70,30 +97,30 @@ describe('My Test', () => {
 
     it('testHasAtLeastOneBomberInMilitaryPlanes', () => {
         let airport = new Airport(planes);
-        let bomberMilitaryPlanes  = airport.getBomberMilitaryPlanes ();
+        let bomberMilitaryPlanes = airport.getBomberMilitaryPlanes();
         let flag = false;
         for (let militaryPlane of bomberMilitaryPlanes) {
-            if (militaryPlane.getMilitaryType() === MilitaryType.BOMBER) {
+            if (militaryPlane.militaryType === MILITARY_TYPES.BOMBER) {
                 flag = true;
             }
-            else{
+            else {
                 assert.fail("Test failed!");
             }
         }
 
-        // if not failed;
+
     })
 
     it('should check that experimentsl planes has classification level higher than unclassified', () => {
         let airport = new Airport(planes);
-        let bomberMilitaryPlanes  = airport.getExperimentalPlanes ();
-        let hasUnclassifiedPlanes  = false;
-        for (let experimentalPlane  of bomberMilitaryPlanes) {
-            if (experimentalPlane.classificationLevel === ClassificationLevel.UNCLASSIFIED) {
+        let bomberMilitaryPlanes = airport.getExperimentalPlanes();
+        let hasUnclassifiedPlanes = false;
+        for (let experimentalPlane of bomberMilitaryPlanes) {
+            if (experimentalPlane.classificationLevel === CLASSIFICATION_LEVELS.UNCLASSIFIED) {
                 hasUnclassifiedPlanes = true;
 
-        }
-        assert.isFalse(hasUnclassifiedPlanes);
+            }
+            assert.isFalse(hasUnclassifiedPlanes);
 
         }
     });
