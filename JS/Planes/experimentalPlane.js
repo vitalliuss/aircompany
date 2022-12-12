@@ -1,68 +1,70 @@
 const Plane = require('./Plane');
 
-class experimentalPlane   extends Plane
-{
+class ExperimentalPlane extends Plane {
+  constructor(
+    model,
+    maxSpeed,
+    maxFlightDistance,
+    maxLoadCapacity,
+    type,
+    classificationLevel
+  ) {
+    super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
+    this.model = model;
+    this.maxSpeed = maxSpeed;
+    this.maxFlightDistance = maxFlightDistance;
+    this.maxLoadCapacity = maxLoadCapacity;
+    this.type = type;
+    this.classificationLevel = classificationLevel;
+  }
 
-    constructor(model, maxSpeed, maxFlightDistance, maxLoadCapacity, type, classificationLevel)  {
-        super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this._model = model;
-        this._maxSpeed = maxSpeed;
-        this._maxFlightDistance = maxFlightDistance;
-        this._maxLoadCapacity = maxLoadCapacity;
-        this._type = type;
-        this._classificationLevel = classificationLevel;
+  get model() {
+    return this.model;
+  }
 
-    }
+  set model(value) {
+    this.model = value;
+  }
 
+  get maxSpeed() {
+    return this.maxSpeed;
+  }
 
-    get model()
-    {
-        return this._model;
-    }
+  set maxSpeed(value) {
+    this.maxSpeed = value;
+  }
 
-    set model(value) {
-        this._model = value;
-    }
+  get maxFlightDistance() {
+    return this.maxFlightDistance;
+  }
 
-    get maxSpeed() {
-        return this._maxSpeed;
-    }
+  set maxFlightDistance(value) {
+    this.maxFlightDistance = value;
+  }
 
-    set maxSpeed(value) {
-        this._maxSpeed = value;
-    }
+  get maxLoadCapacity() {
+    return this.maxLoadCapacity;
+  }
 
-    get maxFlightDistance() {
-        return this._maxFlightDistance;
-    }
+  set maxLoadCapacity(value) {
+    this.maxLoadCapacity = value;
+  }
 
-    set maxFlightDistance(value) {
-        this._maxFlightDistance = value;
-    }
+  get type() {
+    return this.type;
+  }
 
-    get maxLoadCapacity() {
-        return this._maxLoadCapacity;
-    }
+  set type(value) {
+    this.type = value;
+  }
 
-    set maxLoadCapacity(value) {
-        this._maxLoadCapacity = value;
-    }
+  get classificationLevel() {
+    return this.classificationLevel;
+  }
 
-    get type() {
-        return this._type;
-    }
-
-    set type(value) {
-        this._type = value;
-    }
-
-    get classificationLevel() {
-        return this._classificationLevel;
-    }
-
-    set classificationLevel(value) {
-        this._classificationLevel = value;
-    }
+  set classificationLevel(value) {
+    this.classificationLevel = value;
+  }
 }
 
-module.exports = experimentalPlane
+module.exports = ExperimentalPlane;
