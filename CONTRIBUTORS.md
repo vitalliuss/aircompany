@@ -3,7 +3,7 @@ Java - original pretty version
 * Sergei Volchek
 * Aliaksei Safronau
 
-Java - final corrupted version with voilations
+Java - final corrupted version with violations
 =======================================
 * Vitali Shulha
 
