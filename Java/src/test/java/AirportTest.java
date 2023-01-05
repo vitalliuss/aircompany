@@ -1,13 +1,13 @@
-import Planes.ExperimentalPlane;
+import planes.ExperimentalPlane;
 import models.ClassificationLevel;
 import models.ExperimentalType;
 import models.MilitaryType;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import Planes.MilitaryPlane;
-import Planes.PassengerPlane;
-import Planes.Plane;
+import planes.MilitaryPlane;
+import planes.PassengerPlane;
+import planes.Plane;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,10 +43,10 @@ public class AirportTest {
 
     @Test
     public void testGetTransportMilitaryPlanes() {
-        long nonTransportMilitaryPlanesCount = airport.getTransportMilitaryPlanes().stream()
-                .filter(plane -> plane.getType() != MilitaryType.TRANSPORT)
+        long transportMilitaryPlanesCount = airport.getTransportMilitaryPlanes().stream()
+                .filter(plane -> plane.getType() == MilitaryType.TRANSPORT)
                 .count();
-        Assert.assertEquals(nonTransportMilitaryPlanesCount, 0);
+        Assert.assertTrue(transportMilitaryPlanesCount > 0);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class AirportTest {
         airport.sortByMaxLoadCapacity();
         airport.getPlanes().stream()
                 .reduce((currentPlane, nextPlane) -> {
-                    Assert.assertTrue(currentPlane.getMaxLoadCapacity() >= nextPlane.getMaxLoadCapacity());
+                    Assert.assertTrue(currentPlane.getMaxLoadCapacity() <= nextPlane.getMaxLoadCapacity());
                     return nextPlane;
                 });
     }

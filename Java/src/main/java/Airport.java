@@ -1,8 +1,8 @@
-import Planes.ExperimentalPlane;
+import planes.ExperimentalPlane;
 import models.MilitaryType;
-import Planes.MilitaryPlane;
-import Planes.PassengerPlane;
-import Planes.Plane;
+import planes.MilitaryPlane;
+import planes.PassengerPlane;
+import planes.Plane;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -36,7 +36,7 @@ public class Airport {
     public PassengerPlane getPassengerPlaneWithMaxPassengersCapacity() {
         return getPassengerPlanes().stream()
                 .max(Comparator.comparingInt(PassengerPlane::getPassengersCapacity))
-                .orElse(getPassengerPlanes().get(0));
+                .orElse(null);
     }
 
     public List<MilitaryPlane> getTransportMilitaryPlanes() {
