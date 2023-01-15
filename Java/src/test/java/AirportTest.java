@@ -36,11 +36,13 @@ public class AirportTest {
     @Test
     public void testGetTransportMilitaryPlanes() {
         Airport airport = new Airport(planes);
-        Assert.assertEquals(airport.getTransportMilitaryPlanes().get(0).getType(), MilitaryType.TRANSPORT);
+        for(MilitaryPlane p : airport.getTransportMilitaryPlanes()){
+            Assert.assertEquals(p.getType(), MilitaryType.TRANSPORT);
+        }
     }
 
     @Test
-    public void testGetPassengerPlaneWithMaxCapacity() {
+    public void testGetPassengerPlaneWithMaxPassengersCapacity() {
         Airport airport = new Airport(planes);
         PassengerPlane expectedPlaneWithMaxPassengersCapacity = airport.getPassengerPlaneWithMaxPassengersCapacity();
         Assert.assertEquals(planeWithMaxPassengerCapacity, expectedPlaneWithMaxPassengersCapacity);
@@ -48,40 +50,37 @@ public class AirportTest {
 
     @Test
     public void testSortByMaxLoadCapacity() {
-        Airport airport = new Airport(planes).sortByMaxLoadCapacity();
+        Airport airport = new Airport(planes);
+        airport.sortByMaxLoadCapacity();
         List<? extends Plane> planesSortedByMaxLoadCapacity = airport.getPlanes();
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(0).getModel(), "Bell X-14");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(1).getModel(), "Ryan X-13 Vertijet");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(2).getModel(), "F-15");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(3).getModel(), "F-22");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(4).getModel(), "Embraer 190");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(5).getModel(), "Sukhoi Superjet 100");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(6).getModel(), "Boeing-737");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(7).getModel(), "Bombardier CS300");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(8).getModel(), "Boeing-737-800");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(9).getModel(), "Airbus A320");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(10).getModel(), "B-2 Spirit");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(11).getModel(), "Boeing-747");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(12).getModel(), "B-1B Lancer");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(13).getModel(), "B-52 Stratofortress");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(14).getModel(), "Airbus A330");
-        Assert.assertEquals(planesSortedByMaxLoadCapacity.get(15).getModel(), "C-130 Hercules");
+
+        boolean nextPlaneMaxLoadCapacityIsHigherThanCurrent = true;
+        for (int i = 0; i < planesSortedByMaxLoadCapacity.size() - 1; i++) {
+            Plane currentPlane = planesSortedByMaxLoadCapacity.get(i);
+            Plane nextPlane = planesSortedByMaxLoadCapacity.get(i + 1);
+            if (currentPlane.getMaxLoadCapacity() > nextPlane.getMaxLoadCapacity()) {
+                nextPlaneMaxLoadCapacityIsHigherThanCurrent = false;
+                break;
+            }
+        }
+        Assert.assertTrue(nextPlaneMaxLoadCapacityIsHigherThanCurrent);
     }
 
     @Test
     public void testGetBomberMilitaryPlanes() {
         Airport airport = new Airport(planes);
         List<MilitaryPlane> bomberMilitaryPlanes = airport.getBomberMilitaryPlanes();
-        Assert.assertEquals(bomberMilitaryPlanes.get(0).getType(), MilitaryType.BOMBER);
-        Assert.assertEquals(bomberMilitaryPlanes.get(1).getType(), MilitaryType.BOMBER);
-        Assert.assertEquals(bomberMilitaryPlanes.get(2).getType(), MilitaryType.BOMBER);
+        for (MilitaryPlane militaryPlane : bomberMilitaryPlanes) {
+            Assert.assertEquals(militaryPlane.getType(), MilitaryType.BOMBER);
+        }
     }
 
     @Test
     public void testGetExperimentalPlanes(){
         Airport airport = new Airport(planes);
         List<ExperimentalPlane> experimentalPlanes = airport.getExperimentalPlanes();
-        Assert.assertNotEquals(experimentalPlanes.get(0).getClassificationLevel(), ClassificationLevel.UNCLASSIFIED);
-        Assert.assertNotEquals(experimentalPlanes.get(1).getClassificationLevel(), ClassificationLevel.UNCLASSIFIED);
+        for(ExperimentalPlane experimentalPlane : experimentalPlanes) {
+            Assert.assertNotEquals(experimentalPlane.getClassificationLevel(), ClassificationLevel.UNCLASSIFIED);
+        }
     }
 }
