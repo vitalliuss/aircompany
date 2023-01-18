@@ -1,5 +1,3 @@
-package com.epam.training.student_beknur_smagulov.cleancode.planes.src.main.java;
-
 import Planes.ExperimentalPlane;
 import Planes.MilitaryPlane;
 import Planes.PassengerPlane;
