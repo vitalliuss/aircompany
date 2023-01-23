@@ -89,13 +89,10 @@ public class AirportTest {
     public void testExperimentalPlanesHasClassificationLevelHigherThanUnclassified(){
         Airport airport = new Airport(planes);
         List<ExperimentalPlane> experimentalPlanes = airport.getExperimentalPlanes();
-        boolean hasUnclassifiedPlanes = false;
-        for(ExperimentalPlane experimentalPlane : experimentalPlanes){
-            if(experimentalPlane.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED){
-                hasUnclassifiedPlanes = true;
-                break;
-            }
-        }
-        Assert.assertFalse(hasUnclassifiedPlanes);
+        long unclassifiedPlaneCount = experimentalPlanes.stream()
+        long unclassifiedPlaneCount = experimentalPlanes.stream()
+                .filter(plane -> plane.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED)
+                .count();
+        Assert.assertEquals(0, unclassifiedPlaneCount);
     }
 }
