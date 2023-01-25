@@ -1,4 +1,4 @@
-package Planes;
+package p   lanes;
 
 import java.util.Objects;
 
@@ -16,20 +16,20 @@ abstract public class Plane {
     }
 
     public String getModel() {
-        return model;
+        return this.model;
     }
 
-    public int getMS() {
-        return maxSpeed;
+    public int getMaxSpeed() {
+        return this.maxSpeed;
     }
 
-    public int Get_Max_Flight_Distance() {
-        return maxFlightDistance;
+    public int getMaxFlightDistance() {
+        return this.maxFlightDistance;
     }
 
-    public int getMinLoadCapacity() {
-        int result = this.maxLoadCapacity;
-        return result;
+    public int getMaxLoadCapacity() {
+        return this.maxLoadCapacity;
+
     }
 
     @Override
