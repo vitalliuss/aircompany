@@ -1,4 +1,4 @@
-package Planes;
+package planes;
 
 import models.MilitaryType;
 
@@ -14,6 +14,7 @@ public class MilitaryPlane extends Plane {
     }
 
     public MilitaryType getType() {
+
         return type;
     }
 

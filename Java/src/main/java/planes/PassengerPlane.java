@@ -1,4 +1,4 @@
-package Planes;
+package planes;
 
 import java.util.Objects;
 
@@ -11,6 +11,7 @@ public class PassengerPlane extends Plane {
         this.passengersCapacity = passengersCapacity;
     }
     public int getPassengersCapacity() {
+
         return passengersCapacity;
     }
 

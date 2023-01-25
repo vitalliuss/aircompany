@@ -7,14 +7,15 @@ import java.util.*;
 
 public class Airport {
     private List<? extends Plane> planes;
+    public Airport(List<? extends Plane> planes) {
+
+        this.planes = planes;
+    }
 
     public List<PassengerPlane> getPassengerPlane() {
+        List<? extends Plane> allPlanes = this.planes;
         List<PassengerPlane> passengerPlanes = new ArrayList<>();
-        for (Plane plane : allPlanes) {
-            if (plane instanceof PassengerPlane) {
-                passengerPlanes.add((PassengerPlane) plane);
-            }
-        }
+        for (Plane plane : allPlanes) {if (plane instanceof PassengerPlane) {passengerPlanes.add((PassengerPlane) plane);}}
         return passengerPlanes;
     }
 
@@ -115,9 +116,5 @@ public class Airport {
         return "Airport{" +
                 "Planes=" + planes.toString() +
                 '}';
-    }
-
-    public Airport(List<? extends Plane> planes) {
-        this.planes = planes;
     }
 }

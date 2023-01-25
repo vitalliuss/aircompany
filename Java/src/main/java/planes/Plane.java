@@ -1,4 +1,4 @@
-package Planes;
+package planes;
 
 import java.util.Objects;
 
@@ -15,17 +15,20 @@ abstract public class Plane {
         this.maxLoadCapacity = maxLoadCapacity;
     }
 
-    public String getModel() { return model; }
+    public String getModel() {return model;}
 
     public int getMaxSpeed() {
+
         return maxSpeed;
     }
 
     public int getMaxFlightDistance() {
+
         return maxFlightDistance;
     }
 
     public int getMaxLoadCapacity() {
+
         return maxLoadCapacity;
     }
 

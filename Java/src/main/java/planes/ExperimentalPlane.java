@@ -1,4 +1,4 @@
-package Planes;
+package planes;
 
 import models.ClassificationLevel;
 import models.ExperimentalTypes;
@@ -15,6 +15,7 @@ public class ExperimentalPlane extends Plane {
     }
 
     public ClassificationLevel getClassificationLevel(){
+
         return classificationLevel;
     }
 
