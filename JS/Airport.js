@@ -1,7 +1,7 @@
 import PassengerPlane from './planes/PassengerPlane';
 import MilitaryPlane from './planes/MilitaryPlane';
 import MilitaryType from './models/militaryType';
-import experimentalPlane from './planes/ExperimentalPlane';
+import ExperimentalPlane from './planes/ExperimentalPlane';
 
 class Airport {
 
@@ -64,7 +64,7 @@ class Airport {
     getExperimentalPlanes() {
         const experimentalPlanes = [];
         this.planes.forEach(plane => {
-            if (plane instanceof experimentalPlane) {//if
+            if (plane instanceof ExperimentalPlane) {
                 experimentalPlanes.push(plane);
             };
         });
@@ -72,12 +72,9 @@ class Airport {
     };
 
     sortByMaxDistance() {
-        this.planes.sort((a, b) => (a.GetMaxFlightDistance() > b.GetMaxFlightDistance()) ? 1 : -1);
+        this.planes.sort((a, b) => (a.getMaxFlightDistance() > b.getMaxFlightDistance()) ? 1 : -1);
         return this;
     };
-
-    // Sorts by max speed
-    // @return Airport
 
     sortByMaxSpeed() {
         this.planes.sort((a, b) => (a.getMaxSpeed() > b.getMaxSpeed()) ? 1 : -1);

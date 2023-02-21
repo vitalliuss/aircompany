@@ -1,8 +1,8 @@
 import MilitaryPlane from './planes/MilitaryPlane';
 import PassengerPlane from './planes/PassengerPlane';
-import Airport, { printListOfPlanes } from './Airport';
+import Airport from './airport';
 import MilitaryType from './models/militaryType';
-import experimentalPlane from './planes/ExperimentalPlane';
+import ExperimentalPlane from './planes/ExperimentalPlane';
 import ExperimentalTypes from './models/experimentalTypes';
 import ClassificationLevel from './models/classificationLevel';
 
@@ -22,8 +22,8 @@ import ClassificationLevel from './models/classificationLevel';
         new MilitaryPlane('F-15', 1500, 12000, 10000, MilitaryType.fighter),
         new MilitaryPlane('F-22', 1550, 13000, 11000, MilitaryType.fighter),
         new MilitaryPlane('C-130 Hercules', 650, 5000, 110000, MilitaryType.transport),
-        new experimentalPlane("Bell X-14", 277, 482, 500, ExperimentalTypes.highAltitude, ClassificationLevel.secret),
-        new experimentalPlane("Ryan X-13 Vertijet", 560, 307, 500, ExperimentalTypes.vtol, ClassificationLevel.topSecret)];
+        new ExperimentalPlane("Bell X-14", 277, 482, 500, ExperimentalTypes.highAltitude, ClassificationLevel.secret),
+        new ExperimentalPlane("Ryan X-13 Vertijet", 560, 307, 500, ExperimentalTypes.vtol, ClassificationLevel.topSecret)];
 
     const airport = new Airport(planes);
     const militaryAirport = new Airport(airport.getMilitaryPlanes());

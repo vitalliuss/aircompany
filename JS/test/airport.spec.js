@@ -34,7 +34,7 @@ describe('Aircraft departured', () => {
         const transportMilitaryPlanes = airport.getTransportMilitaryPlanes();
         const flag = false;
         for (let militaryPlane of transportMilitaryPlanes) {
-            if (militaryPlane.getmilitaryType() === MilitaryType.transport) {
+            if (militaryPlane.getMilitaryType() === MilitaryType.transport) {
                 flag = true;
                 break;
             };
@@ -66,10 +66,10 @@ describe('Aircraft departured', () => {
     });
     it('test has at least one type bomber in military planes', () => {
         const airport = new Airport(planes);
-        const typeBomberMilitaryPlanes = airport.gettypeBomberMilitaryPlanes();
+        const typeBomberMilitaryPlanes = airport.getTypeBomberMilitaryPlanes();
         const flag = false;
         for (let militaryPlane of typeBomberMilitaryPlanes) {
-            if (militaryPlane.getmilitaryType() === MilitaryType.bomber) {
+            if (militaryPlane.getMilitaryType() === MilitaryType.bomber) {
                 flag = true;
             };
             assert.assertIsTrue(flag);

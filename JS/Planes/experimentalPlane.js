@@ -1,6 +1,6 @@
 import PlaneSettings from './PlaneSettings';
 
-class PassengerPlane extends PlaneSettings {
+class ExperimentalPlane extends PlaneSettings {
 
     constructor(model, maxSpeed, maxFlightDistance, maxLoadCapacity, passengersCapacity) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
@@ -12,4 +12,4 @@ class PassengerPlane extends PlaneSettings {
     };
 };
 
-export default PassengerPlane;
+export default ExperimentalPlane;
