@@ -3,5 +3,4 @@ const MilitaryType = {
     TYPE_BOMBER: 'Bomber',
     TYPE_TRANSPORT: 'Transport'
 };
-
-module.exports =  MilitaryType;
+module.exports = MilitaryType;

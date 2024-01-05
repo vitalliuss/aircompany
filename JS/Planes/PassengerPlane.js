@@ -6,17 +6,17 @@ class PassengerPlane extends Plane {
 
     constructor(model, maxSpeed, maxFlightDistance, maxLoadCapacity, passengersCapacity) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this._passengersCapacity = passengersCapacity;
+        this.passengersCapacity = passengersCapacity;
     }
 
     //=================METHODS=================
-    getPassengersCapacity() {
-        return this._passengersCapacity;
+    get passengersCapacity() {
+        return this.passengersCapacity;
     }
 
-    // set passengersCapacity(value) {
-    //     this._passengersCapacity = value;
-    // }
+    set passengersCapacity(value) {
+        this.passengersCapacity = value;
+    }
 }
 
 module.exports = PassengerPlane;
