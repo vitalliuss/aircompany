@@ -1,6 +1,6 @@
 import Planes.ExperimentalPlane;
 import models.ClassificationLevel;
-import models.ExperimentalTypes;
+import models.ExperimentalType;
 import models.MilitaryType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
