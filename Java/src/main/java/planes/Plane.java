@@ -1,12 +1,14 @@
 package planes;
 
+import interfaces.PlaneInterface;
+
 import java.util.Objects;
 
-abstract public class Plane {
-    String model;
-    private int maxSpeed;
-    private int maxFlightDistance;
-    private int maxLoadCapacity;
+abstract public class Plane implements PlaneInterface {
+    protected final String model;
+    private final int maxSpeed;
+    private final int maxFlightDistance;
+    private final int maxLoadCapacity;
 
     public Plane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
         this.model = model;
@@ -15,20 +17,25 @@ abstract public class Plane {
         this.maxLoadCapacity = maxLoadCapacity;
     }
 
+
+    @Override
     public String getModel() {
-        return this.model;
+        return model;
     }
 
+    @Override
     public int getMaxSpeed() {
-        return this.maxSpeed;
+        return maxSpeed;
     }
 
+    @Override
     public int getMaxFlightDistance() {
-        return this.maxFlightDistance;
+        return maxFlightDistance;
     }
 
+    @Override
     public int getMaxLoadCapacity() {
-        return this.maxLoadCapacity;
+        return maxLoadCapacity;
     }
 
     @Override

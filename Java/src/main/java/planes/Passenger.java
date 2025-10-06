@@ -2,7 +2,7 @@ package planes;
 
 import java.util.Objects;
 
-public class Passenger extends Plane{
+public class Passenger extends Plane {
 
     private final int passengersCapacity;
 
@@ -20,7 +20,7 @@ public class Passenger extends Plane{
     public String toString() {
         return super.toString().replace("}",
                 ", passengersCapacity=" + passengersCapacity +
-                '}');
+                        '}');
     }
 
     @Override
