@@ -2,11 +2,11 @@ package planes;
 
 import java.util.Objects;
 
-public class Passenger extends Plane {
+public class PassengerPlane extends Plane {
 
     private final int passengersCapacity;
 
-    public Passenger(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, int passengersCapacity) {
+    public PassengerPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, int passengersCapacity) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
         this.passengersCapacity = passengersCapacity;
     }
@@ -26,9 +26,9 @@ public class Passenger extends Plane {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Passenger)) return false;
+        if (!(o instanceof PassengerPlane)) return false;
         if (!super.equals(o)) return false;
-        Passenger plane = (Passenger) o;
+        PassengerPlane plane = (PassengerPlane) o;
         return passengersCapacity == plane.passengersCapacity;
     }
 
