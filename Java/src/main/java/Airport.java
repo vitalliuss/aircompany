@@ -73,7 +73,7 @@ public class Airport {
 
     private List<MilitaryPlane> filterMilitaryPlanesByType(PlaneType.Military type) {
         return getMilitaryPlanes().stream()
-                .filter(plane -> plane.getType() == type)
+                .filter(plane -> plane.getType().equals(type))
                 .collect(Collectors.toList());
     }
 
