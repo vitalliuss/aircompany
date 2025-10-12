@@ -9,9 +9,17 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-// version: 1.1
-// made by Vitali Shulha
-// 4-Jan-2019
+
+/**
+ * Version 1.1 of this class.
+ * <p>
+ * Created by Vitali Shulha on 4-Jan-2019.
+ *
+ * @author Vitali Shulha
+ * @version 1.1
+ * @since 2019-01-04
+ */
+
 
 public class Airport {
     private final List<? extends Plane> planes;
