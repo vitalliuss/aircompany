@@ -1,40 +1,53 @@
-package Planes;
+package planes;
 
 import models.MilitaryType;
 
 import java.util.Objects;
 
-public class MilitaryPlane extends Plane{
+public class MilitaryPlane extends Plane {
 
-    private MilitaryType type;
+    private final MilitaryType militaryType;
 
-    public MilitaryPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryType type) {
+    public MilitaryPlane(
+            String model,
+            int maxSpeed,
+            int maxFlightDistance,
+            int maxLoadCapacity,
+            MilitaryType militaryType) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this.type = type;
+        this.militaryType = Objects.requireNonNull(militaryType, "militaryType must not be null");
     }
 
-    public MilitaryType getType() {
-        return type;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString().replace("}",
-                ", type=" + type +
-                '}');
+    public MilitaryType getMilitaryType() {
+        return militaryType;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MilitaryPlane)) return false;
-        if (!super.equals(o)) return false;
-        MilitaryPlane that = (MilitaryPlane) o;
-        return type == that.type;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MilitaryPlane)) {
+            return false;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+
+        MilitaryPlane that = (MilitaryPlane) obj;
+        return Objects.equals(militaryType, that.militaryType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), type);
+        return Objects.hash(super.hashCode(), militaryType);
+    }
+
+    @Override
+    public String toString() {
+        return "MilitaryPlane{" +
+                super.toString() +
+                ", militaryType=" + militaryType +
+                '}';
     }
 }
