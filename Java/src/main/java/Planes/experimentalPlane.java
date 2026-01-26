@@ -1,41 +1,64 @@
-package Planes;
+package planes;
 
 import models.ClassificationLevel;
-import models.ExperimentalTypes;
+import models.ExperimentalType;
 
-public class experimentalPlane extends Plane{
+import java.util.Objects;
 
-    private ExperimentalTypes type;
-    private ClassificationLevel classificationLevel;
+public class ExperimentalPlane extends Plane {
 
-    public experimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ExperimentalTypes type, ClassificationLevel classificationLevel) {
+    private final ExperimentalType experimentalType;
+    private final ClassificationLevel classificationLevel;
+
+    public ExperimentalPlane(
+            String model,
+            int maxSpeed,
+            int maxFlightDistance,
+            int maxLoadCapacity,
+            ExperimentalType experimentalType,
+            ClassificationLevel classificationLevel) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this.type = type;
-        this.classificationLevel = classificationLevel;
+        this.experimentalType = Objects.requireNonNull(experimentalType, "experimentalType must not be null");
+        this.classificationLevel = Objects.requireNonNull(classificationLevel, "classificationLevel must not be null");
     }
 
-    public ClassificationLevel getClassificationLevel(){
+    public ExperimentalType getExperimentalType() {
+        return experimentalType;
+    }
+
+    public ClassificationLevel getClassificationLevel() {
         return classificationLevel;
     }
 
-    public void setClassificationLevel(ClassificationLevel classificationLevel){
-        this.classificationLevel = classificationLevel;
-    }
-
     @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ExperimentalPlane)) {
+            return false;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+
+        ExperimentalPlane that = (ExperimentalPlane) obj;
+
+        return experimentalType.equals(that.experimentalType) &&
+                classificationLevel.equals(that.classificationLevel);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(super.hashCode(), experimentalType, classificationLevel);
     }
 
     @Override
     public String toString() {
-        return "experimentalPlane{" +
-                "model='" + model + '\'' +
+        return "ExperimentalPlane{" +
+                super.toString() +
+                ", experimentalType=" + experimentalType +
+                ", classificationLevel=" + classificationLevel +
                 '}';
     }
 }
