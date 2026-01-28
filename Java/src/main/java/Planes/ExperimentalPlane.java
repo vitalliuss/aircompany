@@ -5,12 +5,12 @@ import models.ExperimentalTypes;
 
 public class ExperimentalPlane extends Plane {
     private final ExperimentalTypes type;
-    private ClassificationLevel classificationLevel;
+    private final ClassificationLevel classificationLevel;
 
-    public ExperimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ExperimentalTypes type, ClassificationLevel classificationLevel) {
-        super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this.type = type;
-        this.classificationLevel = classificationLevel;
+    private ExperimentalPlane(Builder builder) {
+        super(builder.model, builder.maxSpeed, builder.maxFlightDistance, builder.maxLoadCapacity);
+        this.type = builder.type;
+        this.classificationLevel = builder.classificationLevel;
     }
 
     public ClassificationLevel getClassificationLevel() {
@@ -33,6 +33,37 @@ public class ExperimentalPlane extends Plane {
 
     @Override
     public String toString() {
-        return super.toString().replace("}", ", type=" + type + ", classificationLevel=" + classificationLevel + '}');
+        return getClass().getSimpleName() + "{" +
+                "model='" + super.getModel() + '\'' +
+                ", maxSpeed=" + super.getMaxSpeed() +
+                ", maxFlightDistance=" + super.getMaxFlightDistance() +
+                ", maxLoadCapacity=" + super.getMaxLoadCapacity() +
+                ", type=" + type +
+                ", classificationLevel=" + classificationLevel +
+                '}';
+    }
+
+    public static class Builder {
+        private final String model;
+        private final int maxSpeed;
+        private final int maxFlightDistance;
+        private int maxLoadCapacity;
+        private ExperimentalTypes type;
+        private ClassificationLevel classificationLevel;
+
+        public Builder(String model, int maxSpeed, int maxFlightDistance) {
+            this.model = model;
+            this.maxSpeed = maxSpeed;
+            this.maxFlightDistance = maxFlightDistance;
+        }
+
+        public Builder maxLoadCapacity(int maxLoadCapacity) {
+            this.maxLoadCapacity = maxLoadCapacity;
+            return this;
+        }
+
+        public ExperimentalPlane build() {
+            return new ExperimentalPlane(this);
+        }
     }
 }
