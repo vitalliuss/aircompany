@@ -4,13 +4,38 @@ import models.MilitaryType;
 
 import java.util.Objects;
 
-public class MilitaryPlane extends Plane{
+public class MilitaryPlane extends Plane {
+    private final MilitaryType type;
 
-    private MilitaryType type;
+    private MilitaryPlane(Builder builder) {
+        super(builder.model, builder.maxSpeed, builder.maxFlightDistance, 0);
+        this.type = builder.type;
+    }
 
-    public MilitaryPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryType type) {
-        super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this.type = type;
+    public static class Builder {
+        private final String model;
+        private final int maxSpeed;
+        private final int maxFlightDistance;
+        private MilitaryType type;
+
+        public Builder(String model, int maxSpeed, int maxFlightDistance) {
+            this.model = model;
+            this.maxSpeed = maxSpeed;
+            this.maxFlightDistance = maxFlightDistance;
+        }
+
+        public Builder type(MilitaryType type) {
+            this.type = type;
+            return this;
+        }
+
+        public MilitaryPlane build() {
+            return new MilitaryPlane(this);
+        }
+    }
+
+    public static Builder builder(String model, int maxSpeed, int maxFlightDistance) {
+        return new Builder(model, maxSpeed, maxFlightDistance);
     }
 
     public MilitaryType getType() {
@@ -19,9 +44,13 @@ public class MilitaryPlane extends Plane{
 
     @Override
     public String toString() {
-        return super.toString().replace("}",
+        return getClass().getSimpleName() + "{" +
+                "model='" + super.getModel() + '\'' +
+                ", maxSpeed=" + super.getMaxSpeed() +
+                ", maxFlightDistance=" + super.getMaxFlightDistance() +
+                ", maxLoadCapacity=" + super.getMaxLoadCapacity() +
                 ", type=" + type +
-                '}');
+                '}';
     }
 
     @Override
