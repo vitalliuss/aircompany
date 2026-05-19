@@ -11,6 +11,10 @@ public class PlaneSorter {
     // Ordena aviões por distância máxima
     public void sortByMaxDistance(List<Plane> planes) {
 
+        /* se der negativo, o o1 vem antes 
+            se der positivo, o o2 vem antes
+            se der 0, os objetos sao ighuais
+        */
         Collections.sort(planes,new Comparator<Plane>() {
                 @Override
                 public int compare(Plane o1, Plane o2) {
