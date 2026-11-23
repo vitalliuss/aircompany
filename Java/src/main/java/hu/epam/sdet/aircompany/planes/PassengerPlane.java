@@ -2,13 +2,15 @@ package hu.epam.sdet.aircompany.planes;
 
 import java.util.Objects;
 
+import hu.epam.sdet.aircompany.planes.bean.PlaneConfig;
+
 public class PassengerPlane extends Plane {
 
 	private int passengersCapacity;
 
-	public PassengerPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity,
+	public PassengerPlane(PlaneConfig planeConfig,
 			int passengersCapacity) {
-		super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
+		super(planeConfig);
 		this.passengersCapacity = passengersCapacity;
 	}
 
@@ -28,12 +30,12 @@ public class PassengerPlane extends Plane {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (!(o instanceof PassengerPlane))
+		}
+		if (!super.equals(o)) {
 			return false;
-		if (!super.equals(o))
-			return false;
+		}
 		PassengerPlane plane = (PassengerPlane) o;
 		return passengersCapacity == plane.passengersCapacity;
 	}

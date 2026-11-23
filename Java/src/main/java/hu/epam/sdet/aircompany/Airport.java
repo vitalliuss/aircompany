@@ -49,15 +49,13 @@ public class Airport {
 		}
 		return militaryPlanes;
 	}
-	
+
 	public Optional<PassengerPlane> getPassengerPlaneWithMaxPassengersCapacity() {
-	    return getPassengerPlanes().stream()
-	            .max(Comparator.comparingInt(PassengerPlane::getPassengersCapacity));
+		return getPassengerPlanes().stream().max(Comparator.comparingInt(PassengerPlane::getPassengersCapacity));
 	}
 
 	public List<MilitaryPlane> getMilitaryPlanesByType(MilitaryType militaryType) {
-		return getMilitaryPlanes().stream().filter(e -> e.getType() == militaryType)
-				.collect(Collectors.toList());
+		return getMilitaryPlanes().stream().filter(e -> e.getType() == militaryType).collect(Collectors.toList());
 	}
 
 	public List<ExperimentalPlane> getExperimentalPlanes() {
@@ -75,21 +73,16 @@ public class Airport {
 	}
 
 	public List<Plane> getPlanesSortedByMaxDistance() {
-	    return planes.stream()
-	            .sorted(Comparator.comparingInt(Plane::getMaxFlightDistance))
-	            .collect(Collectors.toList());
+		return planes.stream().sorted(Comparator.comparingInt(Plane::getMaxFlightDistance))
+				.collect(Collectors.toList());
 	}
-	
+
 	public List<Plane> getPlanesSortedByMaxSpeed() {
-	    return planes.stream()
-	            .sorted(Comparator.comparingInt(Plane::getMaxSpeed))
-	            .collect(Collectors.toList());
+		return planes.stream().sorted(Comparator.comparingInt(Plane::getMaxSpeed)).collect(Collectors.toList());
 	}
 
 	public List<Plane> getPlanesSortedByMinLoadCapacity() {
-	    return planes.stream()
-	            .sorted(Comparator.comparingInt(Plane::getMinLoadCapacity))
-	            .collect(Collectors.toList());
+		return planes.stream().sorted(Comparator.comparingInt(Plane::getMaxLoadCapacity)).collect(Collectors.toList());
 	}
 
 	public List<? extends Plane> getPlanes() {

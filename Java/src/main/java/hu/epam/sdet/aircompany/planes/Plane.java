@@ -2,57 +2,59 @@ package hu.epam.sdet.aircompany.planes;
 
 import java.util.Objects;
 
-public abstract class Plane {
-	private String model;
-	private int maxSpeed;
-	private int maxFlightDistance;
-	private int maxLoadCapacity;
+import hu.epam.sdet.aircompany.planes.bean.PlaneConfig;
 
-	public Plane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
-		this.model = model;
-		this.maxSpeed = maxSpeed;
-		this.maxFlightDistance = maxFlightDistance;
-		this.maxLoadCapacity = maxLoadCapacity;
+public abstract class Plane {
+	
+	private PlaneConfig planeConfig;
+
+	public Plane(PlaneConfig planeConfig) {
+		this.planeConfig = planeConfig;
 	}
 	
 	public abstract void accept(PlaneVisitor visitor);
 
 	public String getModel() {
-		return model;
+		return planeConfig.getModel();
 	}
 
 	public int getMaxSpeed() {
-		return maxSpeed;
+		return planeConfig.getMaxSpeed();
 	}
 
 	public int getMaxFlightDistance() {
-		return maxFlightDistance;
+		return planeConfig.getMaxFlightDistance();
 	}
 
-	public int getMinLoadCapacity() {
-		int result = this.maxLoadCapacity;
-		return result;
+	public int getMaxLoadCapacity() {
+		return planeConfig.getMaxLoadCapacity();
 	}
 
 	@Override
 	public String toString() {
-		return "Plane{" + "model='" + model + '\'' + ", maxSpeed=" + maxSpeed + ", maxFlightDistance="
-				+ maxFlightDistance + ", maxLoadCapacity=" + maxLoadCapacity + '}';
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof Plane))
-			return false;
-		Plane plane = (Plane) o;
-		return maxSpeed == plane.maxSpeed && maxFlightDistance == plane.maxFlightDistance
-				&& maxLoadCapacity == plane.maxLoadCapacity && Objects.equals(model, plane.model);
+		return "Plane{" + "model='" + planeConfig.getModel() + '\'' + ", maxSpeed=" + planeConfig.getMaxSpeed() + ", maxFlightDistance="
+				+ planeConfig.getMaxFlightDistance() + ", maxLoadCapacity=" + planeConfig.getMaxLoadCapacity() + '}';
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
+		return Objects.hash(planeConfig);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Plane other = (Plane) obj;
+		return Objects.equals(planeConfig, other.planeConfig);
+	}
+
+
 }

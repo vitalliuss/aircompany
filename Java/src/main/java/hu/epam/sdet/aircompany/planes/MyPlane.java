@@ -1,8 +1,10 @@
 package hu.epam.sdet.aircompany.planes;
 
+import hu.epam.sdet.aircompany.planes.bean.PlaneConfig;
+
 public class MyPlane  extends Plane {
-    public MyPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
-        super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
+    public MyPlane(PlaneConfig planeConfig) {
+        super(planeConfig);
     }
     
     @Override

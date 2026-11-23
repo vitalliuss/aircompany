@@ -3,13 +3,14 @@ package hu.epam.sdet.aircompany.planes;
 import java.util.Objects;
 
 import hu.epam.sdet.aircompany.models.MilitaryType;
+import hu.epam.sdet.aircompany.planes.bean.PlaneConfig;
 
 public class MilitaryPlane extends Plane {
 
 	private MilitaryType type;
 
-	public MilitaryPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, MilitaryType type) {
-		super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
+	public MilitaryPlane(PlaneConfig planeConfig, MilitaryType type) {
+		super(planeConfig);
 		this.type = type;
 	}
 
@@ -29,12 +30,12 @@ public class MilitaryPlane extends Plane {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (!(o instanceof MilitaryPlane))
+		}
+		if (!super.equals(o)) {
 			return false;
-		if (!super.equals(o))
-			return false;
+		}
 		MilitaryPlane that = (MilitaryPlane) o;
 		return type == that.type;
 	}

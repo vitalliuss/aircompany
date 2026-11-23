@@ -1,14 +1,17 @@
 package hu.epam.sdet.aircompany.planes;
 
+import java.util.Objects;
+
 import hu.epam.sdet.aircompany.models.ClassificationLevel;
+import hu.epam.sdet.aircompany.planes.bean.PlaneConfig;
 
 public class ExperimentalPlane extends Plane {
 
 	private ClassificationLevel classificationLevel;
 
-	public ExperimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity,
+	public ExperimentalPlane(PlaneConfig planeConfig,
 			ClassificationLevel classificationLevel) {
-		super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
+		super(planeConfig);
 		this.classificationLevel = classificationLevel;
 	}
 
@@ -19,20 +22,27 @@ public class ExperimentalPlane extends Plane {
 	public void setClassificationLevel(ClassificationLevel classificationLevel) {
 		this.classificationLevel = classificationLevel;
 	}
-	
+
 	@Override
 	public void accept(PlaneVisitor visitor) {
-	    visitor.visit(this);
+		visitor.visit(this);
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		return super.equals(o);
+		if (this == o) {
+			return true;
+		}
+		if (!super.equals(o)) {
+			return false;
+		}
+		ExperimentalPlane that = (ExperimentalPlane) o;
+		return classificationLevel == that.classificationLevel;
 	}
 
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		return Objects.hash(super.hashCode(), classificationLevel);
 	}
 
 	@Override
