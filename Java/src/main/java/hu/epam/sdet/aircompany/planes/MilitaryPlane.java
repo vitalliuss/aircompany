@@ -16,6 +16,11 @@ public class MilitaryPlane extends Plane {
 	public MilitaryType getType() {
 		return type;
 	}
+	
+	@Override
+	public void accept(PlaneVisitor visitor) {
+	    visitor.visit(this);
+	}
 
 	@Override
 	public String toString() {

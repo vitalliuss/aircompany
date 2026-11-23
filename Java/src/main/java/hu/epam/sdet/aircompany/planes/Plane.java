@@ -14,16 +14,18 @@ public abstract class Plane {
 		this.maxFlightDistance = maxFlightDistance;
 		this.maxLoadCapacity = maxLoadCapacity;
 	}
+	
+	public abstract void accept(PlaneVisitor visitor);
 
 	public String getModel() {
 		return model;
 	}
 
-	public int getMS() {
+	public int getMaxSpeed() {
 		return maxSpeed;
 	}
 
-	public int Get_Max_Flight_Distance() {
+	public int getMaxFlightDistance() {
 		return maxFlightDistance;
 	}
 

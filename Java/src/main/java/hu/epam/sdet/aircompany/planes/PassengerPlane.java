@@ -15,6 +15,11 @@ public class PassengerPlane extends Plane {
 	public int getPassengersCapacity() {
 		return passengersCapacity;
 	}
+	
+	@Override
+	public void accept(PlaneVisitor visitor) {
+	    visitor.visit(this);
+	}
 
 	@Override
 	public String toString() {

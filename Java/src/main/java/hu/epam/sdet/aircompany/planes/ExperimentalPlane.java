@@ -19,6 +19,11 @@ public class ExperimentalPlane extends Plane {
 	public void setClassificationLevel(ClassificationLevel classificationLevel) {
 		this.classificationLevel = classificationLevel;
 	}
+	
+	@Override
+	public void accept(PlaneVisitor visitor) {
+	    visitor.visit(this);
+	}
 
 	@Override
 	public boolean equals(Object o) {
