@@ -81,12 +81,12 @@ public class Airport {
 		return planes.stream().sorted(Comparator.comparingInt(Plane::getMaxSpeed)).collect(Collectors.toList());
 	}
 
-	public List<Plane> getPlanesSortedByMinLoadCapacity() {
+	public List<Plane> getPlanesSortedByMaxLoadCapacity() {
 		return planes.stream().sorted(Comparator.comparingInt(Plane::getMaxLoadCapacity)).collect(Collectors.toList());
 	}
 
-	public List<? extends Plane> getPlanes() {
-		return planes;
+	public List<Plane> getPlanes() {
+		return new ArrayList<>(planes);
 	}
 
 	@Override
