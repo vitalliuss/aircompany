@@ -1,4 +1,4 @@
-package Planes;
+package hu.epam.sdet.aircompany.planes;
 
 public class MyPlane  extends Plane {
     public MyPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
