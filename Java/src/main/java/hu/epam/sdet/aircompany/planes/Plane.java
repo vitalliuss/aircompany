@@ -5,56 +5,56 @@ import java.util.Objects;
 import hu.epam.sdet.aircompany.planes.bean.PlaneConfig;
 
 public abstract class Plane {
-	
-	private PlaneConfig planeConfig;
 
-	public Plane(PlaneConfig planeConfig) {
-		this.planeConfig = planeConfig;
-	}
-	
-	public abstract void accept(PlaneVisitor visitor);
+    private PlaneConfig planeConfig;
 
-	public String getModel() {
-		return planeConfig.getModel();
-	}
+    public Plane(PlaneConfig planeConfig) {
+        this.planeConfig = planeConfig;
+    }
 
-	public int getMaxSpeed() {
-		return planeConfig.getMaxSpeed();
-	}
+    public abstract void accept(PlaneVisitor visitor);
 
-	public int getMaxFlightDistance() {
-		return planeConfig.getMaxFlightDistance();
-	}
+    public String getModel() {
+        return planeConfig.getModel();
+    }
 
-	public int getMaxLoadCapacity() {
-		return planeConfig.getMaxLoadCapacity();
-	}
+    public int getMaxSpeed() {
+        return planeConfig.getMaxSpeed();
+    }
 
-	@Override
-	public String toString() {
-		return "Plane{" + "model='" + planeConfig.getModel() + '\'' + ", maxSpeed=" + planeConfig.getMaxSpeed() + ", maxFlightDistance="
-				+ planeConfig.getMaxFlightDistance() + ", maxLoadCapacity=" + planeConfig.getMaxLoadCapacity() + '}';
-	}
+    public int getMaxFlightDistance() {
+        return planeConfig.getMaxFlightDistance();
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(planeConfig);
-	}
+    public int getMaxLoadCapacity() {
+        return planeConfig.getMaxLoadCapacity();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Plane other = (Plane) obj;
-		return Objects.equals(planeConfig, other.planeConfig);
-	}
+    @Override
+    public String toString() {
+        return "Plane{" + "model='" + planeConfig.getModel() + '\'' + ", maxSpeed=" + planeConfig.getMaxSpeed()
+                + ", maxFlightDistance=" + planeConfig.getMaxFlightDistance() + ", maxLoadCapacity="
+                + planeConfig.getMaxLoadCapacity() + '}';
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(planeConfig);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Plane other = (Plane) obj;
+        return Objects.equals(planeConfig, other.planeConfig);
+    }
 
 }
